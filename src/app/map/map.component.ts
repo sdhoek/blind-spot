@@ -31,7 +31,6 @@ export class MapComponent implements OnInit {
     this.mapInteractionService.queryCoordinates.pipe(
       filter(coords => coords !== null)
     ).subscribe(coords => {
-      console.log(coords  )
       const features = this.map.queryRenderedFeatures([
         [coords[0]-2, coords[1]-2],
         [coords[0]+2, coords[1]+2],
@@ -42,9 +41,15 @@ export class MapComponent implements OnInit {
       }
 
       const feature = features[0];
+      let words = ''
+      if (feature.sourceLayer === 'roads') {
+        words = `road ${feature.properties.name}`
+      } else if (feature.sourceLayer === 'water' && feature.properties.type === 'water_way') {
+        words = `${feature.sourceLayer}`;
+      } else {
+        words = `${feature.sourceLayer} ${feature.properties.type} ${feature.properties.subtype || ''}`;
+      }
 
-      const words = `${feature.sourceLayer} ${feature.properties.type} ${feature.properties.subtype || ''}`;
-      console.log(words);
       this.speechService.wordsToUtter.next(words);
     })
 

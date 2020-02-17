@@ -26,8 +26,9 @@ export class SpeechService {
     speechSynthesis.cancel();
     this.voices = speechSynthesis.getVoices();
     const utterance = new SpeechSynthesisUtterance(words);
-    utterance.rate = 1.4;
-    utterance.voice = this.voices[5];
+    utterance.rate = 1.1;
+    utterance.voice = this.voices[12];
+    console.log(this.voices);
     utterance.volume = 0.5;
     speechSynthesis.speak(utterance);
 
