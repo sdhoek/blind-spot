@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 
 
 @Component({
@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements DoCheck {
   title = 'blind-spot';
+
+  ngDoCheck() {
+    console.log('do check');
+  }
+
 }
