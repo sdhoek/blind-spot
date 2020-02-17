@@ -1,0 +1,35 @@
+
+#frontcover{
+    // background-image:url('rice-paper-2.png');
+    background-color: red;
+    mix-blend-mode : multiply;
+    background-repeat: repeat;
+  }
+  
+
+
+circle{
+  fill: red;
+}
+circle:hover {
+  cursor: pointer;
+}
+
+.circle-follow {
+position :absolute;
+overflow : hidden;
+background-color: grey;
+width :100px;
+height: 100px;
+-webkit-border-radius: 160px;
+border-radius: 160px;
+-webkit-transition: opacity 0.3s cubic-bezier(0.52, 0.01, 0.16, 1);
+transition: opacity 0.3s cubic-bezier(0.52, 0.01, 0.16, 1);
+opacity: 0;
+}
+
+.active-d3-item {
+opacity : 1;
+mix-blend-mode: multiply ;
+
+}

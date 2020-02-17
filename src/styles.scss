@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+body, html {
+	position: relative;
+	overflow : hidden;
+	height: 100%;
+	width : 100%;
+	margin: 0;
+}
+
+.fullsize{
+    height : 100%;
+      width : 100%;
+      position: absolute;
+      top : 0;
+      left : 0;
+  }
