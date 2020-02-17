@@ -10,13 +10,10 @@ export class SpeechService {
 
 
   constructor() {
-
     this.setup();
-    // speechSynthesis.speak(new SpeechSynthesisUtterance("Listen"));
-    // setTimeout(() => {
-    //   speechSynthesis.speak(new SpeechSynthesisUtterance("to the world"));
-    // }, 1500)
-
+    const utterance = new SpeechSynthesisUtterance("Listen. To the world");
+    utterance.rate = 0.6;
+    speechSynthesis.speak(utterance);
   }
 
   public setup() {
