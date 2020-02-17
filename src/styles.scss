@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-
+@font-face{
+  font-family: silkscreennormal;
+  src:url('assets/silkscreen_normal_macroman/slkscr-webfont.woff')
+}
 body, html {
 	position: relative;
 	overflow : hidden;
