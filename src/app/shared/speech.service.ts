@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 export class SpeechService {
   public wordsToUtter = new Subject();
   public voices: SpeechSynthesisVoice[] = [];
-  
+
 
   constructor() {
 
@@ -16,7 +16,7 @@ export class SpeechService {
     // setTimeout(() => {
     //   speechSynthesis.speak(new SpeechSynthesisUtterance("to the world"));
     // }, 1500)
-    
+
   }
 
   public setup() {
@@ -26,16 +26,16 @@ export class SpeechService {
   }
 
   public speak(words: string) {
-    console.log(words);
     speechSynthesis.cancel();
     this.voices = speechSynthesis.getVoices();
-    console.log(this.voices);
-    const utterance = new SpeechSynthesisUtterance(words)
-    utterance.voice = this.voices[38];
+    const utterance = new SpeechSynthesisUtterance(words);
+    utterance.rate = 1.6;
+    utterance.voice = this.voices[5];
     speechSynthesis.speak(utterance);
+
   }
 
-  
+
 
 
 }
