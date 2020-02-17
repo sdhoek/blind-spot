@@ -28,8 +28,9 @@ export class SpeechService {
     console.log(words);
     speechSynthesis.cancel();
     this.voices = speechSynthesis.getVoices();
+    console.log(this.voices);
     const utterance = new SpeechSynthesisUtterance(words)
-    utterance.voice = this.voices[3];
+    utterance.voice = this.voices[38];
     speechSynthesis.speak(utterance);
   }
 
