@@ -19,8 +19,8 @@ let svg = select('body').select('#frontcover').attr('class','fullsize');
 
 let dragslistner = drag()
    .on('start', dragstarted)
-   .on('drag', dragging)
-   .on('end', dragended);
+   .on('drag', dragging);
+  //  .on('end', dragended);
 
 svg.call(dragslistner);
 

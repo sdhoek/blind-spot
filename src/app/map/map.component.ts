@@ -24,7 +24,15 @@ export class MapComponent implements OnInit {
     center: [5.24574, 51.81254],
     attributionControl:false
   });
-
+  // let nav = new mapboxgl.NavigationControl();
+  // map.addControl(nav, 'top-left');
+  // map.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}));
+  // map.addControl(new mapboxgl.GeolocateControl({
+  //     positionOptions: {
+  //         enableHighAccuracy: true
+  //     },
+  //     trackUserLocation: true
+  // }));
   }
 
 }
