@@ -181,6 +181,16 @@
                     1
                 ]
             }
+        },
+        {
+            "id":"boundaries",
+            "type": "line",
+            "source": "wm_visdata",
+            "source-layer": "boundaries",
+            "paint":{
+                "line-color":"#d3d3d3",
+                "line-width": 5
+            }
         }
     ],
     "visibility": "public",

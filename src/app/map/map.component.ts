@@ -46,7 +46,10 @@ export class MapComponent implements OnInit {
         words = `road ${feature.properties.name}`
       } else if (feature.sourceLayer === 'water' && feature.properties.type === 'water_way') {
         words = `${feature.sourceLayer}`;
-      } else {
+      } else if (feature.sourceLayer === 'boundaries'){
+        words = `you are crossing border ${feature.properties.name}`
+      }
+       else {
         words = `${feature.sourceLayer} ${feature.properties.type} ${feature.properties.subtype || ''}`;
       }
 
