@@ -1,4 +1,5 @@
 import { Component, DoCheck, HostListener } from '@angular/core';
+import { MapInteractionService } from './shared/map-interaction.service';
 
 
 @Component({
@@ -8,7 +9,9 @@ import { Component, DoCheck, HostListener } from '@angular/core';
 })
 export class AppComponent implements DoCheck {
   title = 'blind-spot';
+  constructor(private mapInteractionService: MapInteractionService) {
 
+  }
   ngDoCheck() {
     console.log('do check');
   }
@@ -20,7 +23,7 @@ export class AppComponent implements DoCheck {
     //doSomething () --> Your logic when there is a document click
   }
   @HostListener('document:keydown', ['$event'])
-  public documentKeydown(event: Event): void {
+  public documentKeydown(event: KeyboardEvent): void {
     console.log(event)
 
     // pixels the map pans when the up or down arrow is clicked
@@ -35,25 +38,24 @@ export class AppComponent implements DoCheck {
 
     event.preventDefault();
     if (event.which === 38) {
-      // up
-      this.map.panBy([0, -deltaDistance], {
-        easing: easing
-      });
+      this.mapInteractionService.moveUp();
     } else if (event.which === 40) {
-      // down
-      this.map.panBy([0, deltaDistance], {
-        easing: easing
-      });
+      this.mapInteractionService.moveDown();
     } else if (event.which === 37) {
-      // left
-      this.map.panBy([deltaDistance, 0], {
-        easing: easing
-      });
-    } else if (event.which === 39) {
-      // right
-      this.map.panBy([-deltaDistance, 0], {
-        easing: easing
-      });
+      this.mapInteractionService.moveLeft();
+    } else if ( event.which === 39) {
+      this.mapInteractionService.moveRight();
     }
+    // } else if (event.which === 37) {
+    //   // left
+    //   this.map.panBy([deltaDistance, 0], {
+    //     easing: easing
+    //   });
+    // } else if (event.which === 39) {
+    //   // right
+    //   this.map.panBy([-deltaDistance, 0], {
+    //     easing: easing
+    //   });
+    // }
   }
 }
