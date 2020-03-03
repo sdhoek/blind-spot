@@ -23,7 +23,7 @@
             "source-layer": "water",
             "type": "fill",
             "paint": {
-                "fill-color": "#d3d3d3",
+                "fill-color": "#dee6e9",
                 "fill-opacity": 0.97
             }
         },
