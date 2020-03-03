@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, HostListener } from '@angular/core';
 
 
 @Component({
@@ -12,5 +12,11 @@ export class AppComponent implements DoCheck {
   ngDoCheck() {
     console.log('do check');
   }
+  
+  @HostListener('document:click', ['$event'])
+  public documentClick(event: Event): void {
+    console.log("click")
 
+    //doSomething () --> Your logic when there is a document click
+  }
 }
