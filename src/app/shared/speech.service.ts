@@ -14,13 +14,11 @@ export class SpeechService {
     })
   );
 
-
   constructor() {
     this.setup();
     const utterance = new SpeechSynthesisUtterance("Listen. To the world");
     utterance.rate = 0.6;
     speechSynthesis.speak(utterance);
-
   }
 
   public setup() {
@@ -32,14 +30,11 @@ export class SpeechService {
   public speak(words: string) {
     speechSynthesis.cancel();
     this.voices = speechSynthesis.getVoices();
+    console.log(this.voices); 
     const utterance = new SpeechSynthesisUtterance(words);
     utterance.rate = 1.1;
-    utterance.voice = this.voices[4];
+    utterance.voice = this.voices[6];
     utterance.volume = 0.5;
     speechSynthesis.speak(utterance);
   }
-
-
-
-
 }

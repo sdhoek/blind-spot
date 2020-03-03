@@ -19,4 +19,10 @@ export class AppComponent implements DoCheck {
 
     //doSomething () --> Your logic when there is a document click
   }
+  @HostListener('document:keydown', ['$event']) 
+  public documentKeydown(event: Event): void {
+    console.log(event)
+
+    //doSomething () --> Your logic when there is a document click
+  }
 }
