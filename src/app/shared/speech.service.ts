@@ -30,7 +30,6 @@ export class SpeechService {
   public speak(words: string) {
     speechSynthesis.cancel();
     this.voices = speechSynthesis.getVoices();
-    console.log(this.voices); 
     const utterance = new SpeechSynthesisUtterance(words);
     utterance.rate = 1.1;
     utterance.voice = this.voices[6];

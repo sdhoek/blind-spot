@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 export class MapComponent implements OnInit {
   public map: Map;
 
-  constructor(private mapInteractionService: MapInteractionService, private speechService: SpeechService, private zone: NgZone) { 
+  constructor(private mapInteractionService: MapInteractionService, private speechService: SpeechService, private zone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -28,37 +28,44 @@ export class MapComponent implements OnInit {
         center: [5.24574, 51.81254],
         attributionControl: false
       });
-  
+
+      this.map.on('load', () => {
+        this.mapInteractionService.move$.subscribe(([x, y]) => {
+          this.map.panBy([x, y])
+        })
+      })
+
+
       this.mapInteractionService.queryCoordinates.pipe(
         filter(coords => coords !== null)
       ).subscribe(coords => {
         const features = this.map.queryRenderedFeatures([
-          [coords[0]-2, coords[1]-2],
-          [coords[0]+2, coords[1]+2],
+          [coords[0] - 2, coords[1] - 2],
+          [coords[0] + 2, coords[1] + 2],
         ]
         );
         if (features === undefined || features === null || features.length === 0) {
           return;
         }
-  
+
         const feature = features[0];
         let words = ''
         if (feature.sourceLayer === 'roads') {
           words = `road ${feature.properties.name}`
         } else if (feature.sourceLayer === 'water' && feature.properties.type === 'water_way') {
           words = `${feature.sourceLayer}`;
-        } else if (feature.sourceLayer === 'boundaries'){
+        } else if (feature.sourceLayer === 'boundaries') {
           words = `you are crossing border ${feature.properties.name}`
         }
-         else {
+        else {
           words = `${feature.sourceLayer} ${feature.properties.type} ${feature.properties.subtype || ''}`;
         }
-  
+
         this.speechService.wordsToUtter.next(words);
       })
-  
+
     })
-  
+
 
 
 
