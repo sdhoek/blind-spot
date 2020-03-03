@@ -18,7 +18,7 @@ export class MapContainerComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
       let activeClassName = 'active-d3-item';
-      let circleradius = 50;
+      let circleradius = 30;
       let svg = select('body').select('#frontcover').attr('class', 'fullsize');
 
       let dragslistner = drag()
