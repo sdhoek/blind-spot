@@ -8,6 +8,7 @@ export class MapInteractionService {
   public queryCoordinates: BehaviorSubject<[number, number]> = new BehaviorSubject(null);
   public move$: Subject<[number, number]> = new Subject();
   public moveDelta = 300; // pixels;
+  public isDragging$ = new BehaviorSubject(false);
   constructor() { 
   }
 
