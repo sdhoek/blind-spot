@@ -1,7 +1,6 @@
 {
     "version": 8,
-    "name": "blendmodemap",
-    "glyphs": "https://ta.webmapper.nl/wm/glyphs/{fontstack}/{range}.pbf",
+    "name": "audiomap",
     "sprite": "http://localhost:4200/assets/sprite",
     "sources": {
         "wm_visdata": {
