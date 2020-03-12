@@ -26,14 +26,15 @@ export class MapComponent implements OnInit {
         pitch: 0,
         bearing: 0,
         center: [5.24574, 51.81254],
-        attributionControl: false
+        attributionControl: false,
+        interactive: false
       });
-
       this.map.on('load', () => {
         this.mapInteractionService.move$.subscribe(([x, y]) => {
           this.map.panBy([x, y])
         })
       })
+
 
 
       this.mapInteractionService.queryCoordinates.pipe(
