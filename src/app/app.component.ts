@@ -1,5 +1,6 @@
-import { Component, DoCheck, HostListener } from '@angular/core';
+import { Component, DoCheck, HostListener, OnInit } from '@angular/core';
 import { MapInteractionService } from './shared/map-interaction.service';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -7,13 +8,18 @@ import { MapInteractionService } from './shared/map-interaction.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements DoCheck {
-  title = 'blind-spot';
+export class AppComponent implements OnInit, DoCheck {
+  public showWelcomeText = true;
   constructor(private mapInteractionService: MapInteractionService) {
 
   }
+
+  ngOnInit() {
+    this.mapInteractionService.isDragging$.subscribe(isDragging => {
+      this.showWelcomeText = !isDragging;
+    });
+  }
   ngDoCheck() {
-    console.log('do check');
   }
 
   @HostListener('document:click', ['$event'])
@@ -38,4 +44,5 @@ export class AppComponent implements DoCheck {
       this.mapInteractionService.moveRight();
     }
   }
+
 }
