@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class MapInteractionService {
   public queryCoordinates: BehaviorSubject<[number, number]> = new BehaviorSubject(null);
   public move$: Subject<[number, number]> = new Subject();
-  public moveDelta = 100; // pixels;
+  public moveDelta = 300; // pixels;
   constructor() { 
   }
 

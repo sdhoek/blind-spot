@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
         hash: true,
         zoom: 16,
         pitch: 0,
-        bearing: -15.7,
+        bearing: 0,
         center: [5.24574, 51.81254],
         attributionControl: false
       });
