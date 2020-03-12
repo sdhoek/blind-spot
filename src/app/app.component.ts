@@ -24,38 +24,18 @@ export class AppComponent implements DoCheck {
   }
   @HostListener('document:keydown', ['$event'])
   public documentKeydown(event: KeyboardEvent): void {
-    console.log(event)
-
-    // pixels the map pans when the up or down arrow is clicked
-    let deltaDistance = 100;
-
-    // degrees the map rotates when the left or right arrow is clicked
-    let deltaDegrees = 25;
-
-    function easing(t) {
-      return t * (2 - t);
-    }
-
-    event.preventDefault();
     if (event.which === 38) {
+      event.preventDefault();
       this.mapInteractionService.moveUp();
     } else if (event.which === 40) {
+      event.preventDefault();
       this.mapInteractionService.moveDown();
     } else if (event.which === 37) {
+      event.preventDefault();
       this.mapInteractionService.moveLeft();
     } else if ( event.which === 39) {
+      event.preventDefault();
       this.mapInteractionService.moveRight();
     }
-    // } else if (event.which === 37) {
-    //   // left
-    //   this.map.panBy([deltaDistance, 0], {
-    //     easing: easing
-    //   });
-    // } else if (event.which === 39) {
-    //   // right
-    //   this.map.panBy([-deltaDistance, 0], {
-    //     easing: easing
-    //   });
-    // }
   }
 }

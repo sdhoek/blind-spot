@@ -17,7 +17,6 @@ export class SpeechService {
   constructor() {
     this.setup();
     const utterance = new SpeechSynthesisUtterance("Listen. To the world");
-    utterance.rate = 0.6;
     speechSynthesis.speak(utterance);
   }
 
@@ -32,7 +31,6 @@ export class SpeechService {
     this.voices = speechSynthesis.getVoices();
     const utterance = new SpeechSynthesisUtterance(words);
     utterance.rate = 1.1;
-    utterance.voice = this.voices[6];
     utterance.volume = 0.5;
     speechSynthesis.speak(utterance);
   }
