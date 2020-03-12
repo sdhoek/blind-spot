@@ -29,9 +29,18 @@ export class SpeechService {
   public speak(words: string) {
     speechSynthesis.cancel();
     this.voices = speechSynthesis.getVoices();
+
+    const englishVoice = this.voices.filter(voice => voice.lang === 'en-US')[0];
+    const defaultVoice = this.voices.filter(voice => voice.default === true)[0];
+
     const utterance = new SpeechSynthesisUtterance(words);
     utterance.rate = 1.1;
     utterance.volume = 0.5;
+    if (englishVoice) {
+      utterance.voice = englishVoice
+    } else {
+      utterance.voice = defaultVoice
+    }
     speechSynthesis.speak(utterance);
   }
 }
