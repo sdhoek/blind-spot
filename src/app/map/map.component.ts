@@ -4,7 +4,7 @@ import mapstyle from '../../assets/mapstyle.json';
 import { MapInteractionService } from '../shared/map-interaction.service';
 import { SpeechService } from '../shared/speech.service';
 import { filter } from 'rxjs/operators';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -18,6 +18,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.zone.runOutsideAngular(() => {
+      mapstyle.sprite = `${environment.host.protocol}://${environment.host.name}:${environment.host.port}/assets/sprite`;
       this.map = new Map({
         container: 'map',
         style: mapstyle as any,
