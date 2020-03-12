@@ -20,19 +20,12 @@ export class MapContainerComponent implements OnInit, AfterViewInit {
   
 
   ngAfterViewInit() {
+    const self = this;
     this.zone.runOutsideAngular(() => {
       let activeClassName = 'active-d3-item';
       let circleradius = 30;
       let svg = select('body').select('#frontcover').attr('class', 'fullsize');
-
-      let otherSvg = select('body').select('#frontcover')
-      let otherDraglistener = drag()
-        .on('start', () => {
-          this.mapInteractionService.isDragging$.next(true);
-        })
-        .on('end', () => {
-          this.mapInteractionService.isDragging$.next(false);
-        })
+      
       let dragslistner = drag()
         .on('start', dragstarted)
         .on('drag', () => {
@@ -44,22 +37,23 @@ export class MapContainerComponent implements OnInit, AfterViewInit {
           this.mapInteractionService.queryCoordinates.next(screencoordinates)
         })
         .on('end', dragended)
-   
 
-      otherSvg.call(otherDraglistener)
       svg.call(dragslistner);
 
       function dragstarted() {
+        self.mapInteractionService.isDragging$.next(true);
         let coords = mouse(this);
         svg.append("circle")
           .attr("class", 'circle-follow active-d3-item')
           .style('left', (coords[0] - circleradius) + 'px')
           .style('top', (coords[1] - circleradius) + 'px');
+
       }
 
       function dragended() {
+        self.mapInteractionService.isDragging$.next(false);
         selectAll('circle').classed(activeClassName, false);
-        selectAll('circle').remove();
+        selectAll('circle').remove()
       }
     })
   }
