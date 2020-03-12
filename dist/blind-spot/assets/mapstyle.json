@@ -1,0 +1,358 @@
+{
+    "version": 8,
+    "name": "audiomap",
+    "sprite": "http://localhost:4200/assets/sprite",
+    "sources": {
+        "wm_visdata": {
+            "type": "vector",
+            "url": "https://api.maptiler.com/tiles/nl-cartiqo/tiles.json?key=ZToiMqqISHvdk3wgshe0"
+        }
+    },
+    "layers": [
+        {
+            "id": "water-dark-shadow-line",
+            "source": "wm_visdata",
+            "source-layer": "water",
+            "type": "line",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#191919",
+                "line-translate": [
+                    -2,
+                    -2
+                ],
+                "line-blur": 1.5,
+                "line-width": 3
+            }
+        },
+        {
+            "id": "water-white-shadow-line",
+            "source": "wm_visdata",
+            "source-layer": "water",
+            "type": "line",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#ffffff",
+                "line-translate": [
+                    1.5,
+                    2
+                ],
+                "line-blur": 2,
+                "line-width": 4.5,
+                "line-opacity": 0.95
+            }
+        },
+        {
+            "id": "water",
+            "source": "wm_visdata",
+            "source-layer": "water",
+            "type": "fill",
+            "paint": {
+                "fill-color": "#f1f5f6"
+            }
+        },
+        {
+            "id": "infra",
+            "source": "wm_visdata",
+            "source-layer": "infrastructure",
+            "type": "fill",
+            "paint": {
+                "fill-color": "#dee6e9"
+            }
+        },
+        {
+            "id": "natural",
+            "source": "wm_visdata",
+            "source-layer": "natural",
+            "type": "fill",
+            "paint": {
+                "fill-color": "#dee6e9"
+            }
+        },
+        {
+            "id": "natural-dark",
+            "source": "wm_visdata",
+            "source-layer": "natural",
+            "type": "line",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#191919",
+                "line-blur": 0.2,
+                "line-width": 0.2,
+                "line-opacity": 0.5
+            }
+        },
+        {
+            "id": "agricultural-white-shadow-line",
+            "source": "wm_visdata",
+            "source-layer": "agricultural",
+            "type": "line",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#ffffff",
+                "line-translate": [
+                    1.5,
+                    2
+                ],
+                "line-blur": 0.95,
+                "line-width": 2,
+                "line-opacity": 0.85
+            }
+        },
+        {
+            "id": "agricultural-dark-shadow-line",
+            "source": "wm_visdata",
+            "source-layer": "agricultural",
+            "type": "line",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#191919",
+                "line-translate": [
+                    -1,
+                    -1
+                ],
+                "line-blur": 1,
+                "line-width": 2,
+                "line-opacity":0.85
+            }
+        },
+        {
+            "id": "builtup-courtyard",
+            "source": "wm_visdata",
+            "source-layer": "builtup",
+            "type": "fill",
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "subtype"
+                ],
+                "courtyard"
+            ],
+            "paint": {
+                "fill-color": "#e1e8eb"
+            }
+        },
+        {
+            "id": "agricultural",
+            "source": "wm_visdata",
+            "source-layer": "agricultural",
+            "type": "fill",
+            "paint": {
+                "fill-color": "#ebf0f1"
+            }
+        },
+        {
+            "id": "rails",
+            "type": "line",
+            "source": "wm_visdata",
+            "source-layer": "railways",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#d3d3d3",
+                "line-width": [
+                    "match",
+                    [
+                        "get",
+                        "type"
+                    ],
+                    "tram",
+                    3,
+                    "metro",
+                    4,
+                    "rail",
+                    5,
+                    0
+                ],
+                "line-dasharray": [
+                    1,
+                    2
+                ],
+                "line-opacity": [
+                    "case",
+                    [
+                        "get",
+                        "tunnel"
+                    ],
+                    0.5,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "builtup-white-shadow-line",
+            "source": "wm_visdata",
+            "source-layer": "builtup",
+            "type": "line",
+            "filter": [
+                "all",
+                [
+                    "!=",
+                    [
+                        "get",
+                        "subtype"
+                    ],
+                    "courtyard"
+                ],
+                [
+                    "!=",
+                    [
+                        "get",
+                        "type"
+                    ],
+                    "wall"
+                ]
+            ],
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#ffffff",
+                "line-translate": [
+                    -1.5,
+                    -2
+                ],
+                "line-blur": 1.5,
+                "line-width": 3,
+                "line-opacity": 0.95
+            }
+        },
+        {
+            "id": "wall-dark-shadow-line",
+            "source": "wm_visdata",
+            "source-layer": "builtup",
+            "type": "line",
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "type"
+                ],
+                "wall"
+            ],
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#191919",
+                "line-translate": [
+                    1,
+                    1
+                ],
+                "line-blur": 0.5,
+                "line-width": 1
+            }
+        },
+        {
+            "id": "builtup-dark-shadow-line",
+            "source": "wm_visdata",
+            "source-layer": "builtup",
+            "type": "line",
+            "filter": [
+                "all",
+                [
+                    "!=",
+                    [
+                        "get",
+                        "subtype"
+                    ],
+                    "courtyard"
+                ],
+                [
+                    "!=",
+                    [
+                        "get",
+                        "type"
+                    ],
+                    "wall"
+                ]
+            ],
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#191919",
+                "line-translate": [
+                    2,
+                    2
+                ],
+                "line-blur": 1,
+                "line-width": 2.5
+            }
+        },
+        {
+            "id": "builtup",
+            "source": "wm_visdata",
+            "source-layer": "builtup",
+            "type": "fill",
+            "filter": [
+                "!=",
+                [
+                    "get",
+                    "subtype"
+                ],
+                "courtyard"
+            ],
+            "paint": {
+                "fill-color": "#d2d8da"
+            }
+        },
+        {
+            "id": "roads",
+            "source": "wm_visdata",
+            "source-layer": "roads",
+            "type": "line",
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "paint": {
+                "line-color": "#a8a8a8",
+                "line-width": 4,
+                "line-opacity": 0.5
+            }
+        },
+        {
+            "id": "boundaries",
+            "type": "line",
+            "source": "wm_visdata",
+            "source-layer": "boundaries",
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "paint": {
+                "line-opacity": 0.3,
+                "line-width": 30,
+                "line-blur": 2
+            }
+        }
+    ],
+    "visibility": "public",
+    "created": 0,
+    "modified": 0,
+    "owner": "NieneBoeijen",
+    "id": "blendmode",
+    "draft": false
+}
