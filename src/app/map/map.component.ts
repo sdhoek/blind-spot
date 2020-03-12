@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
         container: 'map',
         style: mapstyle as any,
         hash: true,
-        zoom: 16.5,
+        zoom: 16,
         pitch: 0,
         bearing: 0,
         center: [5.24574, 51.81254],
