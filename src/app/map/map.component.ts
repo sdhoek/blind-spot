@@ -35,8 +35,6 @@ export class MapComponent implements OnInit {
         })
       })
 
-
-
       this.mapInteractionService.queryCoordinates.pipe(
         filter(coords => coords !== null)
       ).subscribe(coords => {
