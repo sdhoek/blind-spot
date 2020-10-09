@@ -52,21 +52,25 @@ export class MapComponent implements OnInit {
         let words = ''
         if (feature.sourceLayer === 'roads') {
           words = `road ${feature.properties.name}`
-        } else if (feature.sourceLayer === 'water' && feature.properties.type === 'water_way') {
-          words = `${feature.sourceLayer}`;
-        } else if (feature.sourceLayer === 'boundaries') {
+        } 
+        else if (feature.sourceLayer === 'boundaries') {
           words = `you are crossing border ${feature.properties.name}`
         }
+        else if (feature.sourceLayer === 'water' && feature.properties.type === 'water_way') {
+          words = `${feature.sourceLayer}`;
+        } 
         else if (feature.sourceLayer === 'natural' && feature.properties.type === 'high') {
           words = `high vegetation ${feature.properties.subtype}`
         }
         else if (feature.sourceLayer === 'natural' && feature.properties.type === 'low') {
           words = `low vegetation ${feature.properties.subtype}` 
         }
+        else if (feature.sourceLayer === "builtup" && feature.properties.type === "building"){
+          words = `${feature.properties.type} ${feature.properties.subtype || ''}`;
+        }
         else {
           words = `${feature.sourceLayer} ${feature.properties.type} ${feature.properties.subtype || ''}`;
         }
-
         this.speechService.wordsToUtter.next(words);
       })
 
